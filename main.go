@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"github.com/oschwald/geoip2-golang"
@@ -9,14 +10,28 @@ import (
 	"os"
 )
 
-var geoIpCityDb, geoIpAsnDb, ipString string
+var geoIpCountryDb, geoIpCityDb, geoIpAsnDb, ipString string
+
+type GeoIpLookup struct {
+	CountryRecord geoip2.Country
+	CityRecord geoip2.City
+	AsnRecord geoip2.ASN
+}
 
 func main() {
 	log.SetOutput(os.Stdout)
+	flag.StringVar(&geoIpCountryDb, "countrydb", "./GeoLite2-Country.mmdb", "Path to the GeoIP2 or GeoLite2 Country database file")
 	flag.StringVar(&geoIpCityDb, "citydb", "./GeoLite2-City.mmdb", "Path to the GeoIP2 or GeoLite2 City database file")
 	flag.StringVar(&geoIpAsnDb, "asndb", "./GeoLite2-ASN.mmdb", "Path to the GeoIP2 or GeoLite2 ASN database file")
 	flag.StringVar(&ipString, "lookup", "127.0.0.1", "IPv4/IPv6 address used for the lookup")
 	flag.Parse()
+
+	countryDb, err := geoip2.Open(geoIpCountryDb)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer countryDb.Close()
+
 	cityDb, err := geoip2.Open(geoIpCityDb)
 	if err != nil {
 		log.Fatal(err)
@@ -27,10 +42,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer asnDb.Close()
 
 	ip := net.ParseIP(ipString)
 	if ip == nil {
 		log.Fatal("Error parsing the IP address " + ipString)
+	}
+
+	countryRecord, err := countryDb.Country(ip)
+	if err != nil {
+		log.Fatal(err)
 	}
 
 	cityRecord, err := cityDb.City(ip)
@@ -43,15 +64,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("English city name: %v\n", cityRecord.City.Names["en"])
-	if len(cityRecord.Subdivisions) > 0 {
-		fmt.Printf("English subdivision name: %v\n", cityRecord.Subdivisions[0].Names["en"])
+	r := GeoIpLookup{
+		*countryRecord,
+		*cityRecord,
+		*asnRecord,
 	}
-	fmt.Printf("ISO country code: %v\n", cityRecord.Country.IsoCode)
-	fmt.Printf("Time zone: %v\n", cityRecord.Location.TimeZone)
-	fmt.Printf("Latitude: %v\n", cityRecord.Location.Latitude)
-	fmt.Printf("Longitude: %v\n", cityRecord.Location.Longitude)
-	fmt.Printf("ASN: %v\n", asnRecord.AutonomousSystemNumber)
-	fmt.Printf("ASN organisation: %v\n", asnRecord.AutonomousSystemOrganization)
+	resultJson, err := json.MarshalIndent(r, "", "  ")
+
+	fmt.Printf("%v\n", string(resultJson))
 }
 
