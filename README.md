@@ -22,14 +22,166 @@ A result will look like this:
 
 ```
 `/g-lookup-darwin-amd64 -lookup 18.158.77.0
-English city name: Frankfurt am Main
-English subdivision name: Hesse
-ISO country code: DE
-Time zone: Europe/Berlin
-Latitude: 50.1188
-Longitude: 8.6843
-ASN: 16509
-ASN organisation: AMAZON-02
+```
+
+Result
+```json
+{
+  "CountryRecord": {
+    "Continent": {
+      "Code": "EU",
+      "GeoNameID": 6255148,
+      "Names": {
+        "de": "Europa",
+        "en": "Europe",
+        "es": "Europa",
+        "fr": "Europe",
+        "ja": "ヨーロッパ",
+        "pt-BR": "Europa",
+        "ru": "Европа",
+        "zh-CN": "欧洲"
+      }
+    },
+    "Country": {
+      "GeoNameID": 2921044,
+      "IsInEuropeanUnion": true,
+      "IsoCode": "DE",
+      "Names": {
+        "de": "Deutschland",
+        "en": "Germany",
+        "es": "Alemania",
+        "fr": "Allemagne",
+        "ja": "ドイツ連邦共和国",
+        "pt-BR": "Alemanha",
+        "ru": "Германия",
+        "zh-CN": "德国"
+      }
+    },
+    "RegisteredCountry": {
+      "GeoNameID": 6252001,
+      "IsInEuropeanUnion": false,
+      "IsoCode": "US",
+      "Names": {
+        "de": "USA",
+        "en": "United States",
+        "es": "Estados Unidos",
+        "fr": "États-Unis",
+        "ja": "アメリカ合衆国",
+        "pt-BR": "Estados Unidos",
+        "ru": "США",
+        "zh-CN": "美国"
+      }
+    },
+    "RepresentedCountry": {
+      "GeoNameID": 0,
+      "IsInEuropeanUnion": false,
+      "IsoCode": "",
+      "Names": null,
+      "Type": ""
+    },
+    "Traits": {
+      "IsAnonymousProxy": false,
+      "IsSatelliteProvider": false
+    }
+  },
+  "CityRecord": {
+    "City": {
+      "GeoNameID": 2925533,
+      "Names": {
+        "de": "Frankfurt am Main",
+        "en": "Frankfurt am Main",
+        "es": "Francfort",
+        "fr": "Francfort-sur-le-Main",
+        "ja": "フランクフルト・アム・マイン",
+        "pt-BR": "Frankfurt am Main",
+        "ru": "Франкфурт",
+        "zh-CN": "法兰克福"
+      }
+    },
+    "Continent": {
+      "Code": "EU",
+      "GeoNameID": 6255148,
+      "Names": {
+        "de": "Europa",
+        "en": "Europe",
+        "es": "Europa",
+        "fr": "Europe",
+        "ja": "ヨーロッパ",
+        "pt-BR": "Europa",
+        "ru": "Европа",
+        "zh-CN": "欧洲"
+      }
+    },
+    "Country": {
+      "GeoNameID": 2921044,
+      "IsInEuropeanUnion": true,
+      "IsoCode": "DE",
+      "Names": {
+        "de": "Deutschland",
+        "en": "Germany",
+        "es": "Alemania",
+        "fr": "Allemagne",
+        "ja": "ドイツ連邦共和国",
+        "pt-BR": "Alemanha",
+        "ru": "Германия",
+        "zh-CN": "德国"
+      }
+    },
+    "Location": {
+      "AccuracyRadius": 1000,
+      "Latitude": 50.1188,
+      "Longitude": 8.6843,
+      "MetroCode": 0,
+      "TimeZone": "Europe/Berlin"
+    },
+    "Postal": {
+      "Code": "60313"
+    },
+    "RegisteredCountry": {
+      "GeoNameID": 6252001,
+      "IsInEuropeanUnion": false,
+      "IsoCode": "US",
+      "Names": {
+        "de": "USA",
+        "en": "United States",
+        "es": "Estados Unidos",
+        "fr": "États-Unis",
+        "ja": "アメリカ合衆国",
+        "pt-BR": "Estados Unidos",
+        "ru": "США",
+        "zh-CN": "美国"
+      }
+    },
+    "RepresentedCountry": {
+      "GeoNameID": 0,
+      "IsInEuropeanUnion": false,
+      "IsoCode": "",
+      "Names": null,
+      "Type": ""
+    },
+    "Subdivisions": [
+      {
+        "GeoNameID": 2905330,
+        "IsoCode": "HE",
+        "Names": {
+          "de": "Hessen",
+          "en": "Hesse",
+          "es": "Hessen",
+          "fr": "Hesse",
+          "ru": "Гессен"
+        }
+      }
+    ],
+    "Traits": {
+      "IsAnonymousProxy": false,
+      "IsSatelliteProvider": false
+    }
+  },
+  "AsnRecord": {
+    "AutonomousSystemNumber": 16509,
+    "AutonomousSystemOrganization": "AMAZON-02"
+  }
+}
 ```
 
 # Build
