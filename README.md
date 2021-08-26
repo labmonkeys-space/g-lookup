@@ -22,7 +22,7 @@ Usage of ./g-lookup-linux-amd64:
 A result will look like this:
 
 ```
-`/g-lookup-darwin-amd64 -lookup 18.158.77.0
+`/g-lookup-linux-amd64 -lookup 18.158.77.0
 ```
 
 Result
