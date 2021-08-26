@@ -10,12 +10,13 @@ import (
 	"os"
 )
 
-var geoIpCountryDb, geoIpCityDb, geoIpAsnDb, ipString string
+var geoIpCountryDb, geoIpCityDb, geoIpAsnDb, ipString, googleMapsLink, long, lat string
 
 type GeoIpLookup struct {
 	CountryRecord geoip2.Country
 	CityRecord geoip2.City
 	AsnRecord geoip2.ASN
+	GoogleMapsLink string
 }
 
 func main() {
@@ -64,13 +65,16 @@ func main() {
 		log.Fatal(err)
 	}
 
+	googleMapsLink = "https://maps.google.com/?q=" + fmt.Sprintf("%f", cityRecord.Location.Latitude) + "," + fmt.Sprintf("%f", cityRecord.Location.Longitude)
+
 	r := GeoIpLookup{
 		*countryRecord,
 		*cityRecord,
 		*asnRecord,
+		googleMapsLink,
 	}
-	resultJson, err := json.MarshalIndent(r, "", "  ")
 
+	resultJson, err := json.MarshalIndent(r, "", "  ")
 	fmt.Printf("%v\n", string(resultJson))
 }
 

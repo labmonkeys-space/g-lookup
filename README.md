@@ -180,7 +180,8 @@ Result
   "AsnRecord": {
     "AutonomousSystemNumber": 16509,
     "AutonomousSystemOrganization": "AMAZON-02"
-  }
+  },
+  "GoogleMapsLink": "https://maps.google.com/?q=50.118800,8.684300"
 }
 ```
 
