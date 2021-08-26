@@ -13,10 +13,11 @@ Usage of ./g-lookup-linux-amd64:
     	Path to the GeoIP2 or GeoLite2 ASN database file (default "./GeoLite2-ASN.mmdb")
   -citydb string
     	Path to the GeoIP2 or GeoLite2 City database file (default "./GeoLite2-City.mmdb")
+  -countrydb string
+    	Path to the GeoIP2 or GeoLite2 Country database file (default "./GeoLite2-Country.mmdb")
   -lookup string
     	IPv4/IPv6 address used for the lookup (default "127.0.0.1")
 ```
-
 
 A result will look like this:
 
