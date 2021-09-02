@@ -10,6 +10,14 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch:
+          - linux/arm
+          - linux/arm64
+          - linux/amd64
+          - darwin/amd64
+          - darwin/arm64
     steps:
     - uses: actions/checkout@v2
 
@@ -18,8 +26,15 @@ jobs:
       with:
         go-version: 1.17
 
-    - name: Build
-      run: go build -v ./...
+    - name: Set go architecture
+      run: |
+        platforms="${{ matrix.arch }}"
+        for platform in "${platforms[@]}"; do
+          platform_split=(${platform//\// })
+          echo "GOOS=${platform_split[0]}" >> $GITHUB_ENV
+          echo "GOARCH=${platform_split[1]}" >> $GITHUB_ENV
+        done
 
-    - name: Test
-      run: go test -v ./...
+    - name: Build
+      run: |
+        go build -v -o "g-lookup-${GOOS}-${GOARCH}"
