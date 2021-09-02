@@ -1,3 +1,5 @@
+![Go workflow](https://github.com/labmonkeys-space/g-lookup/actions/workflows/go.yml/badge.svg)
+
 # GeoIP lookup tool
 
 Simple CLI tool to lookup long/lat and ASN information from IPv4/IPv6 addresses using the [MaxMind GeoIP2 databases](https://www.maxmind.com/en/accounts/411272/geoip/downloads).
