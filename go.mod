@@ -1,6 +1,6 @@
 module g-lookup
 
-go 1.16
+go 1.20
 
 require (
 	github.com/oschwald/geoip2-golang v1.5.0
